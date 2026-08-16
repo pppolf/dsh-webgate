@@ -1,0 +1,31 @@
+# dsh-webgate — bundle patch layer.
+# Applied after @deepseek-ai/dsh-web-app's layer, so this webserver override
+# wins over the base row's default loopback bind. The config layer (not the
+# CLI, which deliberately rejects --host 0.0.0.0) is the sanctioned place for
+# binding policy. An explicit `--host` on the command line still wins because
+# the expression reads ctx.webStartup.host first.
+
+- id: webserver
+  config:
+    host: !!js ctx.webStartup.host ?? '0.0.0.0'
+    port: !!js ctx.webStartup.port ?? 3080
+
+# Point the /api browser-trust fence at the lan-access live authority list:
+# every current LAN IPv4 plus this machine's hostname (.local). The array is
+# the same reference the fence reads per request, so IP changes apply without
+# a restart. The lan-access row below injects lanAccessHosts before this row
+# resolves its expression.
+- id: connection
+  inject: [webRuntime, lanAccessHosts]
+  config:
+    trustedHosts: !!js ctx.lanAccessHosts
+
+# The dual-face plugin row: the node half injects window.__DSH_LAN__ into the
+# served index.html and prints the boot QR line; the client half (dsh.client
+# in package.json) registers the "手机访问" settings section.
+- insert:
+    - id: lan-access
+      name: dsh-webgate
+      config:
+        printBootLine: true
+        injectBrowser: true
