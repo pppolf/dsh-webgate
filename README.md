@@ -45,7 +45,7 @@ profile 的 bundles 层**（DSH 会检测包声明的 `dsh.bundle` 并自动追�
 dsh plugin --profile web add dsh-webgate
 
 # 2) Git 仓库
-dsh plugin --profile web add github:<你的用户名>/dsh-webgate
+dsh plugin --profile web add github:pppolf/dsh-webgate
 
 # 3) 本地目录（开发/试用，免发布）
 dsh plugin --profile web add link:/Users/you/dsh-webgate   # 符号链接，改源码即时生效

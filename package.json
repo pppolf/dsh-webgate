@@ -1,8 +1,12 @@
 {
   "name": "dsh-webgate",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "DSH 远程访问插件：局域网直连（二维码）、cloudflared 快速隧道、frp + 自有服务器反代（含登录门户）",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pppolf/dsh-webgate.git"
+  },
   "type": "module",
   "main": "lib/index.js",
   "exports": {
