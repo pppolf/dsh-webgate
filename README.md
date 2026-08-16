@@ -1,5 +1,8 @@
 # dsh-webgate — DSH 远程访问插件
 
+[![Awesome DSH Plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com)
+
+
 一个 **DeepSeek Harness（DSH）生态插件**，让手机或任何设备远程访问本机运行的
 `dsh web`（DeepSeek Harness 浏览器界面），支持三种访问方式：
 
